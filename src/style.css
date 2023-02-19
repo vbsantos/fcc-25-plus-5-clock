@@ -1,0 +1,175 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --dark-color-1: #222;
+  --dark-color-2: #666;
+  --error-color-1: #c63535;
+  --light-color-1: #eee;
+  --light-color-2: #d1e3f5;
+  --light-color-3: #a8f19d;
+  --light-color-4: #eee8;
+  --shadow-1: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  --shadow-2: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  --shadow-3: 0px 0px 5px rgba(0, 0, 0, 0.4);
+}
+
+#main-container {
+  transition: background-color 100ms linear;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
+#main-container {
+  background-color: var(--light-color-2);
+  color: var(--dark-color-1);
+}
+
+#main-container.break {
+  background-color: var(--light-color-3);
+}
+
+#main-container.error {
+  background-color: var(--error-color-1);
+}
+
+#pomodoro {
+  background-color: var(--light-color-4);
+  border-radius: 10px;
+  box-shadow: var(--shadow-1);
+  padding: 30px;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+#timer-label {
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--dark-color-1);
+}
+
+#time-left {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#configs {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.config {
+  margin: 0 10px;
+}
+
+#session-label,
+#break-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.number-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#break-length,
+#session-length {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 10px;
+  min-width: 40px;
+}
+
+/* BUTTONS */
+
+button {
+  padding: 0;
+  margin: 0;
+  width: 80px;
+  height: 40px;
+  background-color: var(--dark-color-1);
+  color: var(--light-color-1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+#pomodoro>button {
+  width: 80px;
+  height: 40px;
+  margin: 10px 20px;
+  line-height: 42px;
+}
+
+.number-selector>button {
+  width: 30px;
+  height: 30px;
+  line-height: 32px;
+}
+
+button {
+  filter: drop-shadow(var(--shadow-3));
+}
+
+button:hover {
+  filter: drop-shadow(var(--shadow-2));
+}
+
+button:active {
+  filter: none;
+}
+
+button:disabled {
+  filter: none;
+  background-color: var(--dark-color-2);
+  cursor: default;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 700px) {
+  #pomodoro {
+    background-color: unset;
+    box-shadow: none;
+    width: 250px;
+  }
+
+  #configs {
+    display: block;
+  }
+
+  #configs .config {
+    margin: 30px auto;
+  }
+
+  .number-selector>button {
+    width: 40px;
+    height: 40px;
+    line-height: 42px;
+  }
+
+  #pomodoro>button {
+    display: block;
+    margin: 30px 0;
+    width: 100%;
+    height: 40px;
+  }
+}
