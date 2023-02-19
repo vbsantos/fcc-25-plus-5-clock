@@ -2,12 +2,16 @@ import { useState, useEffect, useRef } from 'react';
 
 import "./style.css"
 
+const ERROR_TIME_MS = 1000;
+const DEFAULT_SESSION_TIME_MIN = 25;
+const DEFAULT_BREAK_TIME_MIN = 5;
+
 export const App = () => {
   const errorId = useRef<number | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const [breakLength, setBreakLength] = useState<number>(5);
-  const [sessionLength, setSessionLength] = useState<number>(25);
+  const [breakLength, setBreakLength] = useState<number>(DEFAULT_BREAK_TIME_MIN);
+  const [sessionLength, setSessionLength] = useState<number>(DEFAULT_SESSION_TIME_MIN);
   const [timerLabel, setTimerLabel] = useState<string>("Session");
   const [timeLeft, setTimeLeft] = useState<number>(sessionLength * 60);
   const [isRunning, setIsRunning] = useState<boolean>(false);
@@ -46,7 +50,7 @@ export const App = () => {
     if (errorId.current) {
       clearTimeout(errorId.current);
     }
-    errorId.current = setTimeout(() => setError(false), 1000);
+    errorId.current = setTimeout(() => setError(false), ERROR_TIME_MS);
   }
 
   const handleBreakUpdate = (diff: number) => {
@@ -81,9 +85,9 @@ export const App = () => {
 
     setIsRunning(false);
     setTimerLabel("Session");
-    setTimeLeft(25 * 60);
-    setSessionLength(25);
-    setBreakLength(5);
+    setTimeLeft(DEFAULT_SESSION_TIME_MIN * 60);
+    setSessionLength(DEFAULT_SESSION_TIME_MIN);
+    setBreakLength(DEFAULT_BREAK_TIME_MIN);
 
     if (audioRef.current) {
       audioRef.current.pause();
